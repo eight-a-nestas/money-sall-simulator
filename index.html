@@ -2,86 +2,84 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Idle Tycoon Simulasi Uang</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Idle Tycoon</title>
 <link rel="stylesheet" href="style.css">
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+<!-- Facebook SDK -->
+<script async defer crossorigin="anonymous" 
+src="https://connect.facebook.net/en_US/sdk.js"></script>
 </head>
-
 <body>
+  <h1>Idle Tycoon</h1>
 
-<h2>💰 IDLE TYCOON</h2>
-
-<div class="card">
-  <h3>Saldo</h3>
-  <p id="uang">Rp 0</p>
-  <p id="income">Income/detik: Rp 0</p>
-</div>
-
-<div class="card">
-  <h3>🏪 Warung</h3>
-  Level: <span id="warungLevel">0</span>
-  <button onclick="buy('warung')">Beli Warung</button>
-</div>
-
-<div class="card">
-  <h3>📈 Saham</h3>
-  Level: <span id="sahamLevel">0</span>
-  <button onclick="buy('saham')">Beli Saham</button>
-</div>
-
-<div class="card">
-  <h3>🏠 Properti</h3>
-  Level: <span id="propertiLevel">0</span>
-  <button onclick="buy('properti')">Beli Properti</button>
-</div>
-
-<div class="card">
-  <h3>🏙️ Kota</h3>
-  <div class="scene">
-    <img class="npc" src="assets/buyer.png">
-    <img class="npc" src="assets/buyer.png">
-    <img class="npc" src="assets/buyer.png">
+  <!-- Nama Pemain -->
+  <div class="card">
+    <h3>👤 Nama Pemain</h3>
+    <input type="text" id="playerNameInput" placeholder="Masukkan nama kamu">
+    <button onclick="setPlayerName()">Simpan Nama</button>
+    <p>Nama saat ini: <span id="playerNameDisplay">Pemain</span></p>
   </div>
-</div>
 
-<div class="card">
-  <h3>🌐 Event</h3>
-  <p id="eventStatus">Tidak ada event</p>
-</div>
+  <!-- Info Pemain -->
+  <div class="card">
+    <p>Uang: <span id="statMoney">0</span></p>
+    <p>Level: <span id="playerLevel">1</span></p>
+    <p>Lokasi: <span id="playerLocation">🏠 Rumah</span></p>
+    <p>Prestige: <span id="statPrestige">0</span></p>
+  </div>
 
-<div class="card">
-  <h3>🎯 Misi</h3>
-  <ul id="missions"></ul>
-</div>
+  <!-- Dunia Interaktif -->
+  <div class="card">
+    <h3>🗺️ Dunia Interaktif</h3>
+    <button onclick="goTo('warung')">🏪 Warung</button>
+    <button onclick="goTo('bank')">🏦 Bank</button>
+    <button onclick="goTo('saham')">📈 Bursa Saham</button>
+    <button onclick="goTo('properti')">🏠 Properti</button>
+  </div>
 
-<div class="card">
-  <h3>📊 Statistik</h3>
-  <p id="statTotal">Total income: Rp 0</p>
-  <canvas id="chart" width="300" height="120"></canvas>
-</div>
+  <!-- Leaderboard -->
+  <div class="card">
+    <h3>🏆 Leaderboard Global</h3>
+    <ul id="leaderboardList"></ul>
+  </div>
 
-<div class="card">
-  <h3>🤖 Kompetitor</h3>
-  <p id="aiInfo">AI Corp: Rp 0</p>
-</div>
+  <!-- Pemain Online -->
+  <div class="card">
+    <h3>🌐 Pemain Online</h3>
+    <ul id="onlinePlayers"></ul>
+  </div>
 
-<div class="card">
-  <h3>⚔️ PvP</h3>
-  <ul id="pvpBoard"></ul>
-</div>
+  <!-- Chat Global -->
+  <div class="card">
+    <h3>💬 Chat Global</h3>
+    <div id="chatBox" style="height:150px; overflow-y:auto; border:1px solid #ccc; padding:5px; border-radius:8px;"></div>
+    <input type="text" id="chatInput" placeholder="Tulis pesan..." style="width:70%; padding:4px;">
+    <button onclick="sendChat()">Kirim</button>
+  </div>
 
-<div class="card">
-  <h3>🏢 IPO</h3>
-  <p id="ipoStatus">Private</p>
-  <button onclick="doIPO()">Lakukan IPO</button>
-</div>
+  <!-- Feedback Email -->
+  <div class="card">
+    <h3>✉️ Feedback</h3>
+    <textarea id="feedbackInput" placeholder="Tulis feedback kamu..." rows="3" style="width:100%; border-radius:8px; padding:6px;"></textarea>
+    <button onclick="sendFeedback()">Kirim Feedback</button>
+  </div>
 
-<div class="card">
-  <h3>👑 Prestige</h3>
-  <p id="prestigeInfo">Prestige: 0</p>
-  <button onclick="doPrestige()">Reset & Prestige</button>
-</div>
+  <!-- Chart Harga -->
+  <div class="card">
+    <h3>📊 Grafik Harga</h3>
+    <canvas id="chart" width="300" height="120"></canvas>
+  </div>
 
-<script src="game.js"></script>
+  <!-- Toast Notifikasi -->
+  <div id="toast"></div>
+
+  <!-- Script Game -->
+  <script src="game.js"></script>
 </body>
 </html>
