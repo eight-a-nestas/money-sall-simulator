@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Money Life Simulator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1 id="money">Rp 1.000</h1>
+  <p id="income">Income: Rp 0 / detik</p>
+
+  <div class="card">
+    <img src="assets/warung.png">
+    <span>Warung</span>
+    <button onclick="buy('warung')">Beli</button>
+  </div>
+
+  <div class="card">
+    <img src="assets/saham.png">
+    <span>Saham</span>
+    <button onclick="buy('saham')">Beli</button>
+  </div>
+
+  <div class="card">
+    <img src="assets/properti.png">
+    <span>Properti</span>
+    <button onclick="buy('properti')">Beli</button>
+  </div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
