@@ -6,14 +6,37 @@
 <title>Mini Voxel World 3D</title>
 <style>
 body { margin:0; overflow:hidden; font-family:sans-serif; }
-#inventory, #settings, #profile {
-  position:absolute; top:10px; left:10px; background: rgba(0,0,0,0.6);
+
+/* Inventory UI kiri atas */
+#inventory {
+  position:absolute; top:10px; left:10px;
+  width:180px;
+  background: rgba(0,0,0,0.6);
   color:#fff; padding:10px; border-radius:8px;
-  font-family: sans-serif;
 }
-#inventory h3, #settings h3, #profile h3 { margin:0 0 5px 0; font-size:16px; text-align:center; }
-#inventory button, #settings button { margin:2px; padding:4px 6px; border-radius:4px; border:none; cursor:pointer; background-color:#444; color:#fff; }
-#inventory button:hover, #settings button:hover { background-color:#666; }
+#inventory h3 { margin:0 0 5px 0; font-size:16px; text-align:center; }
+#inventory button { margin:2px; padding:4px 6px; border-radius:4px; border:none; cursor:pointer; background-color:#444; color:#fff; }
+#inventory button:hover { background-color:#666; }
+
+/* Settings UI kanan atas */
+#settings {
+  position:absolute; top:10px; right:10px; left:auto;
+  width:180px;
+  background: rgba(0,0,0,0.6);
+  color:#fff; padding:10px; border-radius:8px;
+}
+#settings h3 { margin:0 0 5px 0; font-size:16px; text-align:center; }
+
+/* Profil UI kiri bawah */
+#profile {
+  position:absolute; bottom:10px; left:10px; top:auto;
+  width:180px;
+  background: rgba(0,0,0,0.6);
+  color:#fff; padding:10px; border-radius:8px;
+}
+#profile h3 { margin:0 0 5px 0; font-size:16px; text-align:center; }
+#profile button { margin:2px; padding:4px 6px; border-radius:4px; border:none; cursor:pointer; background-color:#444; color:#fff; }
+#profile button:hover { background-color:#666; }
 </style>
 </head>
 <body>
@@ -43,7 +66,7 @@ body { margin:0; overflow:hidden; font-family:sans-serif; }
   </label>
 </div>
 
-<!-- Profile UI -->
+<!-- Profil UI -->
 <div id="profile">
   <h3>👤 Profil</h3>
   <label>Nama Pemain:</label>

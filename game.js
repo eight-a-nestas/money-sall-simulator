@@ -59,17 +59,22 @@ function selectBlock(type){
 }
 
 // =====================
-// Raycaster & Add Block
+// Raycaster & Add Block (Cegah Tabrakan)
 // =====================
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
 function addBlock(pos){
+  const occupied = blocks.some(b=>b.position.x===pos.x && b.position.y===pos.y && b.position.z===pos.z);
+  if(occupied) return; // jangan tumpuk
+
   const geo = new THREE.BoxGeometry(blockSize, blockSize, blockSize);
   const cube = new THREE.Mesh(geo, selectedBlock);
   cube.position.copy(pos);
   scene.add(cube);
   blocks.push(cube);
+
+  // Update inventory
   inventoryCount++;
   document.getElementById("invCount").innerText = inventoryCount;
 }
@@ -134,7 +139,7 @@ document.getElementById("langSelect").addEventListener("change", e=>{
   if(lang==="en") alert("Language changed to English");
 });
 
-// Profile
+// Profil
 let playerName = "Pemain";
 function saveProfile(){
   const name = document.getElementById("profileNameInput").value;
